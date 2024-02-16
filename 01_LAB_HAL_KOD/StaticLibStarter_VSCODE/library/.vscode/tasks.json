@@ -1,0 +1,34 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "compile source files",
+			"command": "C:\\Program Files\\mingw64\\bin\\g++.exe",
+			"args": [
+				"-c",
+				"-o",
+				"mymathfuncs.o",
+				"-g",
+				"-Wall",
+				"*.cpp"
+			],
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "create lib",
+			"command": "C:\\Program Files\\mingw64\\bin\\ar.exe",
+			"args": [
+				"rvs",
+				"libmymathfuncs.a",
+				"mymathfuncs.o"
+			],
+			"problemMatcher": [],
+			"dependsOn": "compile source files"
+		}
+	]
+}

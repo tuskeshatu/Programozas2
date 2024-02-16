@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "myConfig",
+            "includePath": [
+                "..\\library"
+            ]
+        }
+    ],
+    "version": 4
+}
