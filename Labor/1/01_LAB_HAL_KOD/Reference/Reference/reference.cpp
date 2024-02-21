@@ -12,20 +12,21 @@ void swapUsingReferences(int& a, int& b) {
 	b = temp;
 }
 
-int& getLocalVariable() { // referenciát lokális változóra SOSE ADJATOK VISSZA! => while(--pontok);
+int& getLocalVariable() { // referenciï¿½t lokï¿½lis vï¿½ltozï¿½ra SOSE ADJATOK VISSZA! => while(--pontok);
 	int a = 10;
-	return a; // warning: returning address of local variable or temporary: a
-			  // ezen a ponton az 'a' lokális változó már felszabadult a call stack framen
+	int& b = a;
+	return b; // warning: returning address of local variable or temporary: a
+			  // ezen a ponton az 'a' lokï¿½lis vï¿½ltozï¿½ mï¿½r felszabadult a call stack framen
 }
 
 int main(int argv, char*argc[]) {
-	// 1. példa
+	// 1. pï¿½lda
 	printf("1. pelda\n");
 	int x;
 	int& y = x;
 	printf("\tx=%d; y=%d\n", x, y);
 
-	// 2. példa
+	// 2. pï¿½lda
 	printf("2. pelda\n");
 	int u = 10;
 	int v = 20;
@@ -33,7 +34,7 @@ int main(int argv, char*argc[]) {
 	swapUsingPointers(&u, &v);
 	printf("\tu=%d; v=%d\n", u, v);
 
-	// 3. példa
+	// 3. pï¿½lda
 	printf("3. pelda\n");
 	int i = 40;
 	int j = 50;
@@ -41,10 +42,10 @@ int main(int argv, char*argc[]) {
 	swapUsingReferences(i, j);
 	printf("\ti=%d; j=%d\n", i, j);
 
-	// 4. példa
+	// 4. pï¿½lda
 	printf("4. pelda\n");
-	// - a localref olyan területre mutat, ami ugyan még tartalmazza a 10-es értéket, de már nem ez a program kezeli
-	// - tehát memóriaszemétre mutat: nem bízhatunk abban, hogy ha bármikor kiolvassuk, mindig 10-et kapunk
+	// - a localref olyan terï¿½letre mutat, ami ugyan mï¿½g tartalmazza a 10-es ï¿½rtï¿½ket, de mï¿½r nem ez a program kezeli
+	// - tehï¿½t memï¿½riaszemï¿½tre mutat: nem bï¿½zhatunk abban, hogy ha bï¿½rmikor kiolvassuk, mindig 10-et kapunk
 	int& localref = getLocalVariable();
 	printf("\tlocalref=%d\n", localref);
 	localref = 44;
@@ -52,7 +53,7 @@ int main(int argv, char*argc[]) {
 	printf("\tlocalref=%d\n", localref);
 	printf("\tlocalref=%d\n", localref);
 
-	// 5. példa
+	// 5. pï¿½lda
 	printf("5. pelda\n");
 	int k = 100;
 	int& l = k;
@@ -60,14 +61,14 @@ int main(int argv, char*argc[]) {
 	int& n = m = 200;
 	printf("\tk=%d; l=%d; m=%d; n=%d\n", k, l, m, n);
 
-	// 6. példa
+	// 6. pï¿½lda
 	printf("6. pelda\n");
 	int* o = new int;
 	*o = 700;
 	int& p = *o;
 	printf("\to=%d; p=%d\n", *o, p);
 
-	delete o; // dinamikusan foglalt területet fel kell szabadítani, különben => while(--pontok); // :(
+	delete o; // dinamikusan foglalt terï¿½letet fel kell szabadï¿½tani, kï¿½lï¿½nben => while(--pontok); // :(
 
 	return 0;
 }

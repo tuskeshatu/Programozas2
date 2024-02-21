@@ -1,28 +1,33 @@
 ﻿#include <iostream>
 
-void swapUsingPointers(int* a, int* b) {
-	int* temp = a;
+void swapUsingPointers(int *a, int *b)
+{
+	int *temp = a;
 	a = b;
 	b = a;
 }
 
-void swapUsingReferences(int& a, int& b) {
+void swapUsingReferences(int &a, int &b)
+{
 	int temp = a;
 	a = b;
 	b = temp;
 }
 
-int& getLocalVariable() { // referenciát lokális változóra SOSE ADJATOK VISSZA! => while(--pontok);
+int &getLocalVariable()
+{ // referenciát lokális változóra SOSE ADJATOK VISSZA! => while(--pontok);
 	int a = 10;
-	return a; // warning: returning address of local variable or temporary: a
-	// ezen a ponton az 'a' lokális változó már felszabadult a call stack framen
+	int &fasz = a;
+	return fasz; // warning: returning address of local variable or temporary: a
+				 // ezen a ponton az 'a' lokális változó már felszabadult a call stack framen
 }
 
-int main(int argv, char*argc[]) {
+int main(int argv, char *argc[])
+{
 	// 1. példa
 	std::cout << "1. pelda" << std::endl;
 	int x;
-	int& y = x;
+	int &y = x;
 	std::cout << "\tx=" << x << "; y=" << y << std::endl;
 
 	// 2. példa
@@ -45,7 +50,7 @@ int main(int argv, char*argc[]) {
 	std::cout << "4. pelda" << std::endl;
 	// - a localref olyan területre mutat, ami ugyan még tartalmazza a 10-es értéket, de már nem ez a program kezeli
 	// - tehát memóriaszemétre mutat: nem bízhatunk abban, hogy ha bármikor kiolvassuk, mindig 10-et kapunk
-	int& localref = getLocalVariable();
+	int &localref = getLocalVariable();
 
 	localref = 44;
 	std::cout << "\tlocalref=" << localref << std::endl;
@@ -55,16 +60,16 @@ int main(int argv, char*argc[]) {
 	// 5. példa
 	std::cout << "5. pelda" << std::endl;
 	int k = 100;
-	int& l = k;
-	int& m = l;
-	int& n = m = 200;
+	int &l = k;
+	int &m = l;
+	int &n = m = 200;
 	std::cout << "\tk=" << k << "; l=" << l << "; m=" << m << "; n=" << n << std::endl;
 
 	// 6. példa
 	std::cout << "6. pelda" << std::endl;
-	int* o = new int;
+	int *o = new int;
 	*o = 700;
-	int& p = *o;
+	int &p = *o;
 	std::cout << "\to=" << *o << "; p=" << p << std::endl;
 
 	delete o; // dinamikusan foglalt területet fel kell szabadítani, különben => while(--pontok); // :(
