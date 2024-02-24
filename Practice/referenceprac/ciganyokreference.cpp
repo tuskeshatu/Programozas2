@@ -1,14 +1,18 @@
 #include <stdio.h>
 
+void fasz(int& a)
+{
+    a += 3;
+
+    return;
+}
+
 int main(int argc, char const *argv[])
 {
 
-    int b = 10;
+    int a = 2;
 
-    int &a = b;
-
-    printf("%d", a);
-
+    fasz(a);
     
 
     return 0;
