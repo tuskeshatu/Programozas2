@@ -54,7 +54,7 @@ void myBubbleSort(void *base, size_t arr_size, size_t elem_size, int (*compar)(c
 
 		for (size_t j = 1; j < i; j++)
 		{
-			if (compare(base + (j - 1) * elem_size, base + j * elem_size) > 0)
+			if (compar(base + (j - 1) * elem_size, base + j * elem_size) > 0)
 			{
 				swap(base + (j - 1) * elem_size, base + j * elem_size, elem_size);
 				sorted_num = j;
