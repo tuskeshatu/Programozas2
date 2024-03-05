@@ -2,6 +2,7 @@
 .vscode/*
 .vscode/tasks.json
 .vscode/launch.json
+*.json
 
 # Prerequisites
 *.d
@@ -35,3 +36,9 @@
 *.exe
 *.out
 *.app
+
+# Visual studio
+./vs*
+*.sln
+*.vcxproj
+*.vcxproj.filters
