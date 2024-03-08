@@ -9,7 +9,7 @@ int main(int argv, char*argc[]) {
 	p1->setName("Bela");
 	(*p1).setAge(15); // a->b === (*a).b
 
-	// while(pontok--);, ha new után nincs delete!
+	// while(pontok--);, ha new utï¿½n nincs delete!
 	delete p1;
 
 	return 0;

@@ -4,20 +4,19 @@
 class VendingMachine
 {
 	int drinkNumber;
-	std::string* drinks;
-public:
+	std::string *drinks;
 
-	VendingMachine();	
-	VendingMachine(const VendingMachine&);
-		
-	int getDrinkNumber();
+public:
+	VendingMachine();
+	VendingMachine(const VendingMachine &);
+
+	int getDrinkNumber() const;
 
 	std::string removeOne();
 	bool buy(int = 1);
-	bool refill(std::string, int);
+	bool refill(const std::string &, int);
 
-	void print();
-	
+	void print() const;
+
 	~VendingMachine();
 };
-

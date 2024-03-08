@@ -1,8 +1,8 @@
 #include "VendingMachine.h"
 #include <cstdio>
 
-// alapértelmezett konstruktor
-// kezdetben üres a gép
+// alapï¿½rtelmezett konstruktor
+// kezdetben ï¿½res a gï¿½p
 VendingMachine::VendingMachine()
 {
 	drinkNumber = 0;
@@ -10,59 +10,66 @@ VendingMachine::VendingMachine()
 }
 
 // TODO
-// másoló konstruktor
-VendingMachine::VendingMachine(const VendingMachine & other)
+// mï¿½solï¿½ konstruktor
+VendingMachine::VendingMachine(const VendingMachine &other)
 {
+	drinkNumber = other.drinkNumber;
+
+	drinks = new std::string[other.drinkNumber];
 	
+	for (size_t i = 0; i < drinkNumber; i++)
+	{
+		drinks[i] = other.drinks[i];
+	}
 }
 
-int VendingMachine::getDrinkNumber()
+int VendingMachine::getDrinkNumber() const
 {
 	return drinkNumber;
 }
 
 VendingMachine::~VendingMachine()
 {
-	// fel kell szabadítani az italoknak lefoglalt memóriaterületet
+	// fel kell szabadï¿½tani az italoknak lefoglalt memï¿½riaterï¿½letet
 	delete[] drinks;
 }
 
-// elsõ ital kivétele
-// visszatér a nevével
+// elsï¿½ ital kivï¿½tele
+// visszatï¿½r a nevï¿½vel
 std::string VendingMachine::removeOne()
 {
-	// ellenõrzés, hogy van-e még üdítõ az automatában
+	// ellenï¿½rzï¿½s, hogy van-e mï¿½g ï¿½dï¿½tï¿½ az automatï¿½ban
 	if (drinkNumber <= 0)
 		return "Empty";
 
-	// visszatérési érték, elsõ elem
+	// visszatï¿½rï¿½si ï¿½rtï¿½k, elsï¿½ elem
 	std::string value = drinks[0];
 
-	// kisebb méretû tömb lefoglalása
-	std::string* tmp;
+	// kisebb mï¿½retï¿½ tï¿½mb lefoglalï¿½sa
+	std::string *tmp;
 	tmp = new std::string[drinkNumber - 1];
 
-	// elsõ utáni elemek átmásolása
+	// elsï¿½ utï¿½ni elemek ï¿½tmï¿½solï¿½sa
 	for (int i = 1; i < drinkNumber; i++)
-		tmp[i-1] = drinks[i];
+		tmp[i - 1] = drinks[i];
 
-	// darabszám csökkentése
+	// darabszï¿½m csï¿½kkentï¿½se
 	drinkNumber = drinkNumber - 1;
 
-	// régi tömb felszabadítása
+	// rï¿½gi tï¿½mb felszabadï¿½tï¿½sa
 	delete[] drinks;
 
-	// új tömb beírása az osztályba
+	// ï¿½j tï¿½mb beï¿½rï¿½sa az osztï¿½lyba
 	drinks = tmp;
 
-	// visszatérés
+	// visszatï¿½rï¿½s
 	return value;
 }
 
-// vásárlás
-// egyszerre több italt is lehet vásárolni, alapértelmezetten 1
-// ha többet vennénk, mint amennyi készleten van, hamissal tér vissza, egyébként igazzal
-// sikeres vásárlás esetén csökkenteni kell a darabszámot, és törölni az elemeket
+// vï¿½sï¿½rlï¿½s
+// egyszerre tï¿½bb italt is lehet vï¿½sï¿½rolni, alapï¿½rtelmezetten 1
+// ha tï¿½bbet vennï¿½nk, mint amennyi kï¿½szleten van, hamissal tï¿½r vissza, egyï¿½bkï¿½nt igazzal
+// sikeres vï¿½sï¿½rlï¿½s esetï¿½n csï¿½kkenteni kell a darabszï¿½mot, ï¿½s tï¿½rï¿½lni az elemeket
 bool VendingMachine::buy(int num)
 {
 	if (num > drinkNumber)
@@ -72,38 +79,50 @@ bool VendingMachine::buy(int num)
 		printf("Vasarolt ital: %s\n", removeOne().c_str());
 	}
 	return true;
-
 }
 
 // TODO
-// automata feltöltése
-// meg kell adni az ital nevét, és hogy mennyit rakunk belõle a gépbe
-bool VendingMachine::refill(std::string pName, int pQty)
+// automata feltï¿½ltï¿½se
+// meg kell adni az ital nevï¿½t, ï¿½s hogy mennyit rakunk belï¿½le a gï¿½pbe
+bool VendingMachine::refill(const std::string &pName, int pQty)
 {
-	// csak pozitív értékkel mûködjön
-	
-	//nagyobb tömb lefoglalása
-	
-	// meglévõ elemek átmásolása
-	
-	// új elemek betöltése
-	
-	// darabszám felülírása
+	// csak pozitï¿½v ï¿½rtï¿½kkel mï¿½kï¿½djï¿½n
+	if (pQty <= 0)
+		throw "Empty!";
 
-	// régi tömb törlése
+	// nagyobb tï¿½mb lefoglalï¿½sa
+	std::string *newDrinks = new std::string[drinkNumber + pQty];
+
+	// meglï¿½vï¿½ elemek ï¿½tmï¿½solï¿½sa
+	for (size_t i = 0; i < drinkNumber; i++)
+	{
+		newDrinks[i] = drinks[i];
+	}
 	
-	// új tömb átírása
+
+	// ï¿½j elemek betï¿½ltï¿½se
+	for (size_t i = drinkNumber; i < drinkNumber + pQty; i++)
+	{
+		newDrinks[i] = pName;
+	}
+
+	// darabszï¿½m felï¿½lï¿½rï¿½sa
+	drinkNumber += pQty;
+
+	// rï¿½gi tï¿½mb tï¿½rlï¿½se
+	delete[] drinks;
+
+	// ï¿½j tï¿½mb ï¿½tï¿½rï¿½sa
+	drinks = newDrinks;
 
 	return true;
 }
 
-// készlet kiírása
-void VendingMachine::print()
+// kï¿½szlet kiï¿½rï¿½sa
+void VendingMachine::print() const
 {
 	printf("Keszlet: %d\n", drinkNumber);
 	for (int i = 0; i < drinkNumber; i++)
 		printf("%s\n", drinks[i].c_str());
 	printf("---Lista vege---\n\n");
 }
-
-

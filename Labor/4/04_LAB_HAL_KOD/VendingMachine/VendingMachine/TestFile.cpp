@@ -1,21 +1,40 @@
 #include "VendingMachine.h"
 
+using namespace std;
+
 int main()
 {
-	// kóla definiálása
-	std::string Cola("Coca-Cola");
+	// kï¿½la definiï¿½lï¿½sa
+	string Cola("Coca-Cola");
 
-	// TODO másfajta ital(ok) definiálása
+	// TODO mï¿½sfajta ital(ok) definiï¿½lï¿½sa
+	string kevert("Kevert");
+	string pinyo("Vodor");
+	string fincsi("nem.");
 
-	// automata létrehozása
-	VendingMachine coldDrinkMachine;	
+	// automata lï¿½trehozï¿½sa
+	VendingMachine coldDrinkMachine;
 
-	// feltöltés 5 Coca-colával
+	// feltï¿½ltï¿½s 5 Coca-colï¿½val
 	coldDrinkMachine.refill(Cola, 5);
+	coldDrinkMachine.refill(kevert, 10);
+	coldDrinkMachine.refill(pinyo, 3);
+	coldDrinkMachine.refill(fincsi, 6);
 
-	// ellenõrzés
+	// ellenï¿½rzï¿½s
 	coldDrinkMachine.print();
 
-	// TODO vásárlás és másoló konstruktor kipróbálása, több automata létrehozása
-	
+	coldDrinkMachine.buy(69);
+
+	// TODO vï¿½sï¿½rlï¿½s ï¿½s mï¿½solï¿½ konstruktor kiprï¿½bï¿½lï¿½sa, tï¿½bb automata lï¿½trehozï¿½sa
+	VendingMachine az_estem(coldDrinkMachine);
+	coldDrinkMachine.print();
+
+	coldDrinkMachine.~VendingMachine();
+
+	coldDrinkMachine.buy();
+
+	{
+		VendingMachine test;
+	}
 }
