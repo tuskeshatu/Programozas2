@@ -7,6 +7,8 @@ int main()
 	// k�la defini�l�sa
 	string Cola("Coca-Cola");
 
+	const char *c_Cola = Cola.c_str();
+
 	// TODO m�sfajta ital(ok) defini�l�sa
 	string kevert("Kevert");
 	string pinyo("Vodor");
