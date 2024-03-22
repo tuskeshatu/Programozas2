@@ -13,41 +13,43 @@ namespace HomeMadeString
 		char* pData;
 	public:
 		// Összefűz két stringet, és visszatér vele
-		static String concatenate(String&, String&);
+		static String concatenate(const String&, const String&);
 
 		// Összehasonlít két stringet
-		static bool compare(String&, String&);
+		static bool compare(const String&, const String&);
 
 		// A második stringet az első stringbe másolja
-		static void copy(String&, String&);
+		static void copy(String&, const String&);
 
 		// Argumentum nélküli konstruktor:
 		String();
 
 		// Másoló konstruktor
+		String(const String&);
 
 		// Egy NULL végű stringet váró konstruktor
-		String(char*);
+		String(const char*);
 
 		// Egy karaktert (c) és egy előjel nélküli egészet (times) váró konstruktor,
 		// amely times darab c karakterrel inicializálja a stringet
+		String(char, unsigned);
 
 		// A destruktor
 		~String();
 
 		// Visszaadja a tárolt C stringet
-		char* getCString();
+		const char* getCString() const;
 
 		// Visszatér a string hosszával
-		size_t getLength();
+		size_t getLength() const;
 
 		// Kiírja a stringet a megadott kimeneti adatfolyamba (A 'cout' ostream típusú.
 		// A .h állományban nem használunk using namespace-t, mert nem tudjuk, hova lesz
 		// beépítve, és ott milyen hatása lesz. Ezért kiíjuk az std::-t. Ez a .cpp állományban
 		// már nem kell, ott használhatjuk a using namespace std utasítást):
-		void print(std::ostream&);
+		void print(std::ostream&) const;
 
 		// Visszaadja a megadott pozícióban lévo karaktert, egyébként nullát:
-		char at(unsigned);
+		char at(unsigned) const;
 	};
 }
