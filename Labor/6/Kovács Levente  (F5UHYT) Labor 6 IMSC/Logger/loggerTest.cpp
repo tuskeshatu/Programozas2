@@ -13,7 +13,7 @@ int main()
 	// If '=' operator and copy constructor wouldn't be disabled, this would
 	// create another instance of Logger. Since these operations are deleted,
 	// the compiler throws errors.
-
+	
 	// Logger loggerSingletonEEzACsodaPart2 = Logger::getInstance();
 	// Logger loggerSingletonEEzACsodaPart3 = logger;
 

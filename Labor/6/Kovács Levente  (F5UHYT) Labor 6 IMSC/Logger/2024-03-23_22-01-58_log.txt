@@ -1,0 +1,7 @@
+22:01:58:	Log started
+22:01:58:	Ha singleton ez ott kell legyen a fileban
+22:01:58:	Network connection established.
+22:01:58:	Module A can communicate with remote host R.
+22:01:58:	Network card junction temperature is getting higher and higher.
+22:01:58:	Network connection interrupted.
+22:01:58:	Log ended

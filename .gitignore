@@ -43,3 +43,4 @@
 *.suo
 *.vcxproj
 *.vcxproj.filters
+*.user
