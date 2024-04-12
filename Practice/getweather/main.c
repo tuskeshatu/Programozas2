@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
 
     curl = curl_easy_init();
 
-    curl_easy_setopt(curl, CURLOPT_URL, "https://api.openweathermap.org/data/2.5/weather?lat=47.4729606&lon=19.0521963&appid=19997ff5430eb34c26e674be2aab1121");
+    curl_easy_setopt(curl, CURLOPT_URL, "https://api.openweathermap.org/data/2.5/weather?lat=47.4729606&lon=19.0521963&appid={API_key}");
 
     curl_easy_perform(curl);
 
