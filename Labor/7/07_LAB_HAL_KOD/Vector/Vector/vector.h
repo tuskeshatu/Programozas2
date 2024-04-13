@@ -6,22 +6,21 @@ namespace Sorters {
 	bool descend(const int&, const int&);
 }
 
-// Egy dinamikus tömb osztály
+// Egy dinamikus tï¿½mb osztï¿½ly
 class Vector
 {
-	// A tömb mérete
+	// A tï¿½mb mï¿½rete
 	unsigned elementNum;
 
-	// A tömb maximális mérete; alapértelmezetten 20
+	// A tï¿½mb maximï¿½lis mï¿½rete; alapï¿½rtelmezetten 20
 	unsigned maxElementsNum;
 
-	// A dinamikus adatokra mutató pointer
+	// A dinamikus adatokra mutatï¿½ pointer
 	int *pData;
 	
-	// Diagnosztikai célú globális kiiratóoperátor
-	friend std::ostream& operator<<(std::ostream&, const Vector&);
-
-	// Tömbfeltöltés operátor túlterheléssel
+	// Diagnosztikai cï¿½lï¿½ globï¿½lis kiiratï¿½operï¿½tor
+	
+	// Tï¿½mbfeltï¿½ltï¿½s operï¿½tor tï¿½lterhelï¿½ssel
 	friend std::istream& operator>>(std::istream&, Vector&);
 public:
 	// Konstruktorok, destruktor
@@ -29,31 +28,31 @@ public:
 	Vector(const Vector&);
 	~Vector();
 
-	// Visszatér a tömb méretével.
+	// Visszatï¿½r a tï¿½mb mï¿½retï¿½vel.
 	unsigned size() const;
 
-	// Visszatér a tömb maximális méretével.
+	// Visszatï¿½r a tï¿½mb maximï¿½lis mï¿½retï¿½vel.
 	unsigned getMaxElementsNum() const;
 
-	// Törli a tömböt.
+	// Tï¿½rli a tï¿½mbï¿½t.
 	void clear();
 	
-	// Törli a megadott indexû elemet. A 0 és size()-1 közötti indexek érvényesek.
+	// Tï¿½rli a megadott indexï¿½ elemet. A 0 ï¿½s size()-1 kï¿½zï¿½tti indexek ï¿½rvï¿½nyesek.
 	bool erase(unsigned);
 
-	// Visszatér a megadott indexû elemmel, amely módosítható is egyben.
-	// A 0 és size()-1 közötti indexek érvényesek.
+	// Visszatï¿½r a megadott indexï¿½ elemmel, amely mï¿½dosï¿½thatï¿½ is egyben.
+	// A 0 ï¿½s size()-1 kï¿½zï¿½tti indexek ï¿½rvï¿½nyesek.
 	int& at(unsigned);
 
-	// Visszatér a megadott indexû elemmel, amely csak olvasható.
-	// A 0 és size()-1 közötti indexek érvényesek. Az int típus esetén nem kellene
-	// const referencia (mert olcsó mûvelet a beépített típusú
-	// változók másolása), de saját típus esetén igen.
+	// Visszatï¿½r a megadott indexï¿½ elemmel, amely csak olvashatï¿½.
+	// A 0 ï¿½s size()-1 kï¿½zï¿½tti indexek ï¿½rvï¿½nyesek. Az int tï¿½pus esetï¿½n nem kellene
+	// const referencia (mert olcsï¿½ mï¿½velet a beï¿½pï¿½tett tï¿½pusï¿½
+	// vï¿½ltozï¿½k mï¿½solï¿½sa), de sajï¿½t tï¿½pus esetï¿½n igen.
 	const int& at(unsigned) const;
 
-	// Beszúr egy elemet a megadott indexû helyre.
-	// Ha az index nagyobb, mint a tömb mérete, megnöveli a tömb méretét,
-	// és a szükséges új helyeket nullákkal tölti fel.
+	// Beszï¿½r egy elemet a megadott indexï¿½ helyre.
+	// Ha az index nagyobb, mint a tï¿½mb mï¿½rete, megnï¿½veli a tï¿½mb mï¿½retï¿½t,
+	// ï¿½s a szï¿½ksï¿½ges ï¿½j helyeket nullï¿½kkal tï¿½lti fel.
 	bool insert(unsigned, int);
 
 	void sort(bool(*)(const int&, const int&) = Sorters::ascend);
@@ -61,19 +60,19 @@ public:
 	// operator=
 	Vector& operator=(const Vector&);
 
-	// Két operator[]. Az at() tagfüggvény operator formában is.
+	// Kï¿½t operator[]. Az at() tagfï¿½ggvï¿½ny operator formï¿½ban is.
 	int& operator[](unsigned);
 	const int& operator[](unsigned) const;
 
-	// Minden elem megszorzása a jobb oldali operandussal.
+	// Minden elem megszorzï¿½sa a jobb oldali operandussal.
 	void operator*=(unsigned);
 
-	// A jobb oldali operandus hozzáadása minden elemhez.
+	// A jobb oldali operandus hozzï¿½adï¿½sa minden elemhez.
 	void operator+=(unsigned);
 };
 
-// Diagnosztikai célú kiiratás
+// Diagnosztikai cï¿½lï¿½ kiiratï¿½s
 std::ostream& operator<<(std::ostream&, const Vector&);
 
-// Tömbfeltöltés operátor túlterheléssel
+// Tï¿½mbfeltï¿½ltï¿½s operï¿½tor tï¿½lterhelï¿½ssel
 std::istream& operator>>(std::istream&, Vector&);
