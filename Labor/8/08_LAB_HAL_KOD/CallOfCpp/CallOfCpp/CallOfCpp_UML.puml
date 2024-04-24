@@ -1,0 +1,79 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class Knife {
+	+Knife(unsigned damage, double sharpness)
+	+~Knife()
+	+sharpen() : double
+	-sharpness : double
+	+toString() : std::string {query}
+	+use() : unsigned
+}
+
+
+class Pistol {
+	+Pistol(unsigned damage, unsigned clipSize, unsigned totalBullets)
+	+~Pistol()
+	+toString() : std::string {query}
+	-bulletsInClip : unsigned
+	-clipSize : unsigned
+	-totalBullets : unsigned
+	+use() : unsigned
+	+reload() : void
+}
+
+
+class Railgun {
+	+Railgun(unsigned damage, unsigned energy)
+	+~Railgun()
+	+toString() : std::string {query}
+	-energy : unsigned
+	+use() : unsigned
+	+recharge() : void
+}
+
+
+class Weapon {
+	+Weapon(unsigned damage)
+	+~Weapon()
+	+toString() : std::string {query}
+	-damage : unsigned
+	+getDamage() : unsigned {query}
+	+use() : unsigned
+	+setDamage(const unsigned paramDamage) : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+.Weapon <|-- .Knife
+
+
+.Weapon <|-- .Pistol
+
+
+.Weapon <|-- .Railgun
+
+
+
+
+
+/' Aggregation relationships '/
+
+
+
+
+
+/' Nested objects '/
+
+
+
+@enduml

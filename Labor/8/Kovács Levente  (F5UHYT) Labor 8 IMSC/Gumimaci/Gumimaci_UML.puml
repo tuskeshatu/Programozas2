@@ -1,0 +1,63 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class Company {
+	+Company(const std::string& businessName, const std::string& vatId, const long id)
+	+~Company()
+	-businessName : std::string
+	+getBusinessName() : std::string {query}
+	-vatId : std::string
+}
+
+
+class Partner {
+	+Partner(const long id)
+	+~Partner()
+	-privateKey : char
+	-id : const long
+	+getId() : long {query}
+}
+
+
+class Person {
+	+Person(std::string const& firstName, std::string const& lastName, std::string const& taxNumber, const long id)
+	+Person(const Person& other)
+	+~Person()
+	-firstName : std::string
+	+getFirstName() : std::string {query}
+	+getLastName() : std::string {query}
+	-lastName : std::string
+	-taxNumber : std::string
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+.Partner <|-- .Company
+
+
+.Partner <|-- .Person
+
+
+
+
+
+/' Aggregation relationships '/
+
+
+
+
+
+/' Nested objects '/
+
+
+
+@enduml
