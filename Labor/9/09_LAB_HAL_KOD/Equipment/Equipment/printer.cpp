@@ -3,20 +3,21 @@
 
 using namespace std;
 
-//A serialNo és a price paramétereket is el kell tárolnunk valahol
-Printer::Printer(unsigned serialNo, unsigned price, unsigned cartridgePrice): cartridgePrice(cartridgePrice){}
-
-void Printer::setCartridgePrice(unsigned cartridgePrice)
-{
-	this->cartridgePrice = cartridgePrice;
-}
+// A serialNo ï¿½s a price paramï¿½tereket is el kell tï¿½rolnunk valahol
 
 unsigned Printer::getCartridgePrice() const
 {
 	return cartridgePrice;
 }
 
-void Printer::print() const
+void Printer::print(std::ostream &os) const
 {
-	cout << " Cartridge Price (Printer):" << cartridgePrice;
+	Equipment::print(os);
+	os << " Printer; price: " << price << " cartridge price: " << cartridgePrice;
+}
+
+std::ostream &operator<<(std::ostream& os, const Printer &p)
+{
+	p.print(os);
+	return os;
 }
