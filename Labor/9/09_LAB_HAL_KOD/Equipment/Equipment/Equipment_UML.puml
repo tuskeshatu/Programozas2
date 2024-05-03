@@ -1,0 +1,63 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class Display {
+	+Display(unsigned serialNumber, unsigned price, unsigned age)
+	-age : unsigned
+	+getAge() : unsigned {query}
+	-price : unsigned
+	+print() : void {query}
+	+setAge(unsigned age) : void
+}
+
+
+class Equipment {
+	+Equipment(int sn)
+	+~Equipment()
+	-serial_number : int
+	+print(std::ostream& os) : void {query}
+}
+
+
+class Printer {
+	+Printer(unsigned serialNumber, unsigned price, unsigned cartridgePrice)
+	+Printer(const Printer& other)
+	+operator=(const Printer& other) : Printer&
+	-cartridgePrice : unsigned
+	+getCartridgePrice() : unsigned {query}
+	-price : unsigned
+	+print(std::ostream& os) : void {query}
+	+setCartridgePrice(unsigned cartridgePrice) : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+.Equipment <|-- .Display
+
+
+.Equipment <|-- .Printer
+
+
+
+
+
+/' Aggregation relationships '/
+
+
+
+
+
+/' Nested objects '/
+
+
+
+@enduml

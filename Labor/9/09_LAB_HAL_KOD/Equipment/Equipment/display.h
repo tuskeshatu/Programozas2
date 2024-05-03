@@ -1,10 +1,9 @@
 #pragma once
+#include "equipment.h"
 
-
-//Displayeket és Printereket közös tömbben szeretnénk valahogy tárolni
-class Display 
+//Displayeket ï¿½s Printereket kï¿½zï¿½s tï¿½mbben szeretnï¿½nk valahogy tï¿½rolni
+class Display : public Equipment
 {
-	unsigned serialNumber;
 	unsigned price;
 	unsigned age;
 public:

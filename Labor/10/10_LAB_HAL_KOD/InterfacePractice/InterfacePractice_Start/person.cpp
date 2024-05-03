@@ -1,4 +1,5 @@
 #include "person.h"
+#include "comparable.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ int Person::getAge() const
 
 bool Person::setHeight(double height)
 {
-	if (height<10 || height>300)
+	if (height < 10 || height > 300)
 		return false;
 	this->height = height;
 	return true;
@@ -27,10 +28,9 @@ double Person::getHeight() const
 	return height;
 }
 
-
 bool Person::setWeight(double weight)
 {
-	if (weight<0 || weight>400)
+	if (weight < 0 || weight > 400)
 		return false;
 
 	this->weight = weight;
@@ -43,32 +43,22 @@ double Person::getWeight() const
 	return weight;
 }
 
-
-void Person::serialize(ostream& os) const
+void Person::serialize(ostream &os) const
 {
 	// unsigned char -> int, különben karakterként írja ki
 	os << (int)age << '\t' << height << '\t' << weight << endl;
 }
 
-void Person::deserialize(istream& is)
+void Person::deserialize(istream &is)
 {
-	double height;
-	double weight;
-	int age;
-	char c;
-
+	int age, height, weight;
 	is >> age;
-	is >> c;
-	if (c != ';')
-		is.clear(ios::failbit);
+	if (!is)
+	{
+		return;
+	}
 
-	is >> height;
-	is >> c;
-	if (c != ';')
-		is.clear(ios::failbit);
-
-	is >> weight;
-
+	is >> height >> weight;
 	if (is)
 	{
 		this->age = age;
@@ -76,11 +66,19 @@ void Person::deserialize(istream& is)
 		this->weight = weight;
 	}
 	else
-		cerr << "Error in input format." << endl;
+		throw("File read error!");
 }
 
-ostream& operator<<(ostream& os, const Person& right)
+bool Person::operator==(const Comparable &other) const
 {
-	//TODO
-	return os;
+	return true;
+}
+
+bool Person::operator<(const Comparable &other) const
+{
+	Person const *pOther = dynamic_cast<Person const*>(&other);
+	if (pOther == nullptr)
+		throw invalid_argument("Invalid comparison with Person");
+
+	return height < pOther->height;
 }

@@ -9,9 +9,9 @@ public:
 
 	unsigned getEnergy() const;
 
-	unsigned use();
+	unsigned use() override;
 	void recharge(); // fegyver feltöltése
 
-	std::string toString() const;
+	std::string toString() const override;
 };
 

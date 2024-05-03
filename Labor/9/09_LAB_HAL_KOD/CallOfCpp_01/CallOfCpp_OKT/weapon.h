@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <string>
+#include <iostream>
 
 class Weapon
 {
@@ -11,7 +12,9 @@ public:
 	unsigned getDamage() const;
 	void setDamage(unsigned damage);
 
-	unsigned use(); // visszaadja a csökkentett sebzést
+	virtual unsigned use(); // visszaadja a csökkentett sebzést
 	
-	std::string toString() const;
+	virtual std::string toString() const;
 };
+
+std::ostream& operator<<(std::ostream&, const Weapon&);

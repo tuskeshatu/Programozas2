@@ -11,3 +11,6 @@ public:
 	// Visszaállítja magát az is-ből
 	virtual void deserialize(std::istream& is) = 0;
 };
+
+std::ostream& operator<<(std::ostream&, const Serializable&);
+std::istream& operator>>(std::istream&, Serializable&);

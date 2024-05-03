@@ -9,9 +9,9 @@ public:
 
 	double getSharpness() const;
 
-	unsigned use();
+	unsigned use() override;
 	void sharpen(); // élez
 
-	std::string toString() const;
+	std::string toString() const override;
 };
 

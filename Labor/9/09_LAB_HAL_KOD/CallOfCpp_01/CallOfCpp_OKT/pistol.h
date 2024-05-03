@@ -13,9 +13,9 @@ public:
 	unsigned getTotalBullets() const;
 	unsigned getBulletsInClip() const;
 
-	unsigned use();
+	unsigned use() override;
 	void reload(); // tár újratöltése
 
-	std::string toString() const;
+	std::string toString() const override;
 };
 

@@ -24,3 +24,9 @@ std::string Weapon::toString() const
 	ss << "Weapon; damage can be caused=" << getDamage();
 	return ss.str();
 }
+
+std::ostream& operator<<(std::ostream& os, const Weapon& w)
+{
+	os << w.toString();
+	return os;
+}
