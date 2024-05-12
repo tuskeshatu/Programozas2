@@ -1,9 +1,106 @@
 #include <iostream>
 
+#include <vector>
+#include <list>
+
+bool negativeInt(int a) { return a < 0; }
+bool negativeDouble(int a) { return a < 0; }
+
+template <class T>
+bool isNegative(T a) { return a < 0; }
+
+template <class T>
+struct less_than
+{
+    T a;
+    less_than(const T &a) : a(a) {}
+    bool operator()(const T &x) const { return x < a; }
+};
+
+template <class T>
+struct less
+{
+    bool operator()(const T &a, const T &b) const { return a < b; }
+};
 
 
 
-// 1.c Egészítsd ki a Vector2D osztályt a find_max_elem feladathoz
+template <class T, class P>
+size_t countIf(T first, T last, P pred)
+{
+    size_t count = 0;
+
+    for (; first != last; first++)
+    {
+        if (pred(*first))
+            count++;
+    }
+
+    return count;
+}
+
+template <class T>
+void swap(T &a, T &b)
+{
+    T tmp = a;
+    a = b;
+    b = tmp;
+}
+
+template<class function, class T>
+struct bound2nd
+{
+    function f;
+    T v;
+    bound2nd(function f, T v) : f(f), v(v) {}
+    bool operator()(const T& x) const {return f(v, x);}
+};
+
+template <class function, class T>
+bound2nd<function, T> bind2nd(function f, const T &v)
+{
+    return bound2nd<function, T>(f, v);
+}
+
+int main()
+{
+
+    int a = 1, b = 2;
+    swap(a, b);
+
+    double c = 3.14, d = 6.9;
+    swap(c, d);
+
+    int intarr[]{1, 2, -3, 2};
+    size_t testcnt = countIf(intarr, intarr + 4, isNegative<int>);
+
+    double doublearr[]{-3.6, 4.2, -9.6, 2.1};
+    testcnt = countIf(doublearr, doublearr + 4, isNegative<double>);
+
+    testcnt = countIf(intarr, intarr + 4, less_than<int>(2));
+    testcnt = countIf(doublearr, doublearr + 4, less_than<double>(3));
+
+    std::vector<double> doubleVector;
+    doubleVector.push_back(6.9);
+    doubleVector.push_back(3.14);
+    doubleVector.push_back(4.20);
+    testcnt = countIf(doubleVector.begin(), doubleVector.end(), less_than<double>(5));
+
+    std::list<double> doubleList;
+    doubleList.push_back(6.9);
+    doubleList.push_back(3.14);
+    doubleList.push_back(4.20);
+    testcnt = countIf(doubleList.begin(), doubleList.end(), less_than<double>(5));
+
+
+    testcnt = countIf(doubleList.begin(), doubleList.end(), bind2nd(less<double>(), 5));
+    return 0;
+}
+
+#if 0
+
+
+// 1.c Egï¿½szï¿½tsd ki a Vector2D osztï¿½lyt a find_max_elem feladathoz
 class Vector2D {
 private:
     double x;
@@ -18,21 +115,21 @@ public:
     }
 };
 
-//1.a feladat tesztelése
+//1.a feladat tesztelï¿½se
 void swapTest() {
     int x = 5, y = 10;
-    std::cout << "Eredeti értékek: x = " << x << ", y = " << y << std::endl;
-    //1. valósítsd meg a swap függvénysablont.
+    std::cout << "Eredeti ï¿½rtï¿½kek: x = " << x << ", y = " << y << std::endl;
+    //1. valï¿½sï¿½tsd meg a swap fï¿½ggvï¿½nysablont.
     //swap(x, y);
-    std::cout << "Csere után: x = " << x << ", y = " << y << std::endl;
+    std::cout << "Csere utï¿½n: x = " << x << ", y = " << y << std::endl;
 
     double c = 3.14, d = 2.71;
-    //2. hívd meg a swap függvényt double típusú változókra is.
+    //2. hï¿½vd meg a swap fï¿½ggvï¿½nyt double tï¿½pusï¿½ vï¿½ltozï¿½kra is.
 
 }
 
 
-// 1.b feladat tesztelése - kommentezd ki és hívd meg, ha megvalósítottad a find_max_elem sablont. A lenti kódot ne írd át!
+// 1.b feladat tesztelï¿½se - kommentezd ki ï¿½s hï¿½vd meg, ha megvalï¿½sï¿½tottad a find_max_elem sablont. A lenti kï¿½dot ne ï¿½rd ï¿½t!
 /*
 void maxTest() {
     int intArray[] = { 1, 3, 5, 2, 4 };
@@ -59,7 +156,7 @@ void maxTest() {
         std::cout << "Empty integer array." << std::endl;
 
     ////////////////////////////////////
-    1.c feladat - kommentezd ki, ha a Vector2D osztályt megvalósítottad.
+    1.c feladat - kommentezd ki, ha a Vector2D osztï¿½lyt megvalï¿½sï¿½tottad.
 
     //Vector2D vectors[] = { Vector2D(1.0, 2.0), Vector2D(3.0, 4.0), Vector2D(0.5, 0.5) };
     //Vector2D* maxVector = find_max_elem(vectors, 3);
@@ -74,13 +171,4 @@ void maxTest() {
 
 */
 
-
-int main() {
-
-    swapTest();
-    //maxTest();
-
-    return 0;
-}
-
-
+#endif
