@@ -1,7 +1,7 @@
 ﻿#pragma once
-#include "state.hpp"
+#include "state.h"
 
-// TODO: template
+template <class LABEL_TYPE, class INPUT_TYPE>
 class Rule
 {
 	// Ha referencia lenne, nem lehetne operator=-t írni úgy, hogy a Vector-ban ne pointereket tároljunk.
@@ -14,15 +14,15 @@ class Rule
 	const State<LABEL_TYPE>* nextState; // A következő állapot, ahova ugorhatunk.
 public:
 	// TODO: Ide jön egy konstruktor
-
-	
+	Rule(const State<LABEL_TYPE> &state, const INPUT_TYPE& input,const State<LABEL_TYPE> &nextState ) : state(&state), input(input), nextState(&nextState) {}
+	Rule() {}
 	// Akkor találunk egyezést a szabállyal, ha a megadott jelenlegi állapot
 	// megegyezik a tárolt állapottal, valamint a most érkezett bemeneti elem
 	// megegyezik a tárolt inputtal.
 	bool match(const State <LABEL_TYPE>& currentState, const INPUT_TYPE& currentInput)
 	{
 		// 1. Visszatérés igenne, ha matchel, ellenkező esetben hamissal.
-		
+		return *state == currentState && input == currentInput;
 	}
 
 	// Visszaadjuk a következő állapotot. Konstanst ad vissza,
@@ -30,7 +30,7 @@ public:
 	const State<LABEL_TYPE>& getNextState() const
 	{
 		// 1. Visszatérés
-		
+		return *nextState;
 	}
 
 	// Megjegyzés: most megelégszünk az alapértelmezett operator=-vel
